@@ -1,0 +1,11 @@
+CREATE TABLE note (
+    note_id BIGSERIAL PRIMARY KEY,
+    user_id UUID NOT NULL,
+    title VARCHAR(255) NOT NULL,
+    content TEXT NOT NULL,
+    is_pinned BOOLEAN DEFAULT FALSE,
+    is_archived BOOLEAN DEFAULT FALSE,
+    created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT fk_user_note FOREIGN KEY (user_id) REFERENCES "user"(user_id) ON DELETE CASCADE
+);
