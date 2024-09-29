@@ -9,6 +9,8 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
 @AllArgsConstructor
@@ -36,4 +38,7 @@ public class Label {
     @UpdateTimestamp
     @Column(nullable = false)
     private LocalDateTime updated_at;
+
+    @ManyToMany(mappedBy = "labels")
+    private Set<Note> notes = new HashSet<>();
 }
